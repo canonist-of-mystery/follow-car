@@ -1,29 +1,33 @@
-#include "stm32f10x.h"                  
+#include "stm32f10x.h"                  // Device header
+#include "Delay.h"
+#include "OLED.h"
+#include "Motor.h"
+#include "Key.h"
+ 
+unit8_t KeyNum;
+int8_t Speed;
 
 int main(void)
 {
-	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE); // 开启 GPIOC 时钟
+	OLED_Init();
+	Motor_Init();//初始化
+	Key_Init();
+	OLED_Init();
 
-	
-	GPIO_InitTypeDef GPIO_Initstructure; // 声明一个 GPIO 初始化结构体变量
+	OLED_ShowString(1,1,"Speed:");
 
-	
-	GPIO_Initstructure.GPIO_Mode=GPIO_Mode_Out_PP; // 设置为推挽输出
-	GPIO_Initstructure.GPIO_Pin=GPIO_Pin_13; // 选择引脚：GPIOC pin 13
-	GPIO_Initstructure.GPIO_Speed=GPIO_Speed_50MHz; // 输出速率选择
-	GPIO_Init(GPIOC,&GPIO_Initstructure); // 初始化 GPIOC 的 pin13
-	GPIO_SetBits(GPIOC,GPIO_Pin_13); // 将 PC13 拉高
-	
 	while(1)
 	{
-		// 在这里放用户代码，例如：
-		// GPIO_ResetBits(GPIOC,GPIO_Pin_13); // 点亮 LED（如果 LED 是低电平点亮）
-		// delay_ms(500);
-		// GPIO_SetBits(GPIOC,GPIO_Pin_13); // 熄灭 LED
-		// delay_ms(500);
-		
-		// 当前示例保持空循环，避免跑到主函数外
+		KeyNum=Key_GetNum();
+		if(KeyNum==1)
+		{
+			Speed += 20;
+			if(Angle>100)//到100变回-100
+			{
+				Speed=-100;
+			}
+		}
+		Motor_SetSpeed(Speed);//输入速度即可
+		OLED_ShowSignedNum(1,7,Speed,3);//OLED屏幕显示
 	}
-
 }

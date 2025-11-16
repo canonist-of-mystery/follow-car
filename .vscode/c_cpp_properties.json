@@ -3,10 +3,11 @@
         {
             "name": "Target 1",
             "includePath": [
-                "e:\\Stm32_project\\2-1 stm32工程模板\\Start",
-                "e:\\Stm32_project\\2-1 stm32工程模板\\User",
-                "e:\\Stm32_project\\2-1 stm32工程模板\\Library",
-                "e:\\Stm32_project\\2-1 stm32工程模板\\start"
+                "e:\\Stm32_project\\6-5PWM驱动直流电机\\Start",
+                "e:\\Stm32_project\\6-5PWM驱动直流电机\\Library",
+                "e:\\Stm32_project\\6-5PWM驱动直流电机\\User",
+                "e:\\Stm32_project\\6-5PWM驱动直流电机\\System",
+                "e:\\Stm32_project\\6-5PWM驱动直流电机\\Hardware"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",
