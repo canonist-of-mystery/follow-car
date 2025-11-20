@@ -3,11 +3,13 @@
         {
             "name": "Target 1",
             "includePath": [
-                "e:\\Stm32_project\\6-5PWM驱动直流电机\\Start",
-                "e:\\Stm32_project\\6-5PWM驱动直流电机\\Library",
-                "e:\\Stm32_project\\6-5PWM驱动直流电机\\User",
-                "e:\\Stm32_project\\6-5PWM驱动直流电机\\System",
-                "e:\\Stm32_project\\6-5PWM驱动直流电机\\Hardware"
+                "c:\\Users\\34288\\follow-car\\Start",
+                "c:\\Users\\34288\\follow-car\\Library",
+                "c:\\Users\\34288\\follow-car\\User",
+                "c:\\Users\\34288\\follow-car\\System",
+                "c:\\Users\\34288\\follow-car\\Hardware",
+                "C:\\Keil_v5\\ARM\\ARMCC\\include",
+                "C:\\Keil_v5\\ARM\\ARMCC\\include\\rw"
             ],
             "defines": [
                 "USE_STDPERIPH_DRIVER",
