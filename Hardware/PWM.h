@@ -3,7 +3,10 @@
 
 void PWM_Init(void);
 
-void PWM_SetCompare3(uint16_t Compare);
+void PWM_SetCompare1_left(uint8_t Compare);
+void PWM_SetCompare2_left(uint8_t Compare);
 
+void PWM_SetCompare1_right(uint8_t Compare);
+void PWM_SetCompare2_right(uint8_t Compare);
 
 #endif

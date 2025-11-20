@@ -31,3 +31,12 @@ int main(void)
 		OLED_ShowSignedNum(1,7,Speed,3);//OLED屏幕显示
 	}
 }
+
+void TIM1_UP_IRQHandler(void)
+{
+	if(TIM_GetITStatus(TIM1,TIM_IT_Update)==SET)
+	{
+		Key_Tick();
+		TIM_ClearITPendingBit(TIM1,TIM_IT_Update);
+	}
+}
