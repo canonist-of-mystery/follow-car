@@ -1,5 +1,4 @@
-#include "stm32f10x.h"
-#include "PWM.h"
+#include "all header.h"
 
 void Motor_Init(void)
 {

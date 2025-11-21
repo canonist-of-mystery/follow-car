@@ -19,7 +19,7 @@ void sensor_init(void)//红外模块用到的四个引脚的初始化
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 
-void sensor_check(void)//设置红外模块的状态
+uint8_t sensor_check(void)//设置红外模块的状态
 {
     if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_11) == 0)
     {
@@ -55,20 +55,48 @@ void sensor_check(void)//设置红外模块的状态
 
     if(left1==0 && left2==1 && right1==1 && right2==0)
     {
-        mode=straight;//检测到黑线
+        mode=straight;//直行
     }
     else if(left1==0 && left2==1 && right1==0 && right2==0)
     {
-        mode=turnleft;//检测到黑线
+        mode=turnleft;//左转
     }else if(left1==0 && left2==0 && right1==1 && right2==0)
     {
-        mode=turnright;//检测到黑线
+        mode=turnright;//右转
     }else if(left1==1 && left2==1 && right1==1 && right2==0)
     {
-        mode=leftvertical;//检测到黑线
+        mode=leftvertical;//左直角
     }else if(left1==0 && left2==1 && right1==1 && right2==1)
     {
-        mode=rightvertical;//检测到黑线
+        mode=rightvertical;//右直角
     }
     
+    return mode;
+}
+
+void sensor_control(void)//根据红外模块的状态控制小车运动
+{
+    mode = sensor_check();
+    
+    switch(mode)
+    {
+        case straight:
+            car_go_straight();
+            break;
+        case turnleft:
+            car_turn_left();
+            break;
+        case turnright:
+            car_turn_right();
+            break;
+        case leftvertical:
+            car_left_vertical();
+            break;
+        case rightvertical:
+            car_right_vertical();
+            break;
+        default:
+            car_go_straight();
+            break;
+    }
 }

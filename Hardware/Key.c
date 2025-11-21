@@ -1,16 +1,4 @@
-#include "stm32f10x.h"                  // Device header
-#include "Delay.h"
-#include "OLED.h"
-#include "Timer.h"
-#include "Motor.h"
-#include "Serial.h"
-#include "Encoder.h"
-#include "PID.h"
-#include "Key.h"
-#include "PWM.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "all header.h"
 
 #define KEY_PRESSED				1
 #define KEY_UNPRESSED			0
