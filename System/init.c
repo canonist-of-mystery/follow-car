@@ -1,6 +1,6 @@
 #include "all header.h"
 
-void all init()
+void all_init()
 {
     Motor_Init();
 	Key_Init();

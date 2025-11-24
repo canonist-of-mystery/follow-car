@@ -1,4 +1,5 @@
 .\objects\key.o: Hardware\Key.c
+.\objects\key.o: .\System\all header.h
 .\objects\key.o: .\Start\stm32f10x.h
 .\objects\key.o: .\Start\core_cm3.h
 .\objects\key.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -29,3 +30,9 @@
 .\objects\key.o: .\Library\stm32f10x_wwdg.h
 .\objects\key.o: .\Library\misc.h
 .\objects\key.o: .\System\Delay.h
+.\objects\key.o: .\Hardware\Motor.h
+.\objects\key.o: .\Hardware\Key.h
+.\objects\key.o: .\Hardware\PWM.h
+.\objects\key.o: .\Hardware\car.h
+.\objects\key.o: .\Hardware\sensor.h
+.\objects\key.o: .\System\Timer.h

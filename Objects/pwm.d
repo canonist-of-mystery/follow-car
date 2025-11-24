@@ -1,4 +1,5 @@
 .\objects\pwm.o: Hardware\PWM.c
+.\objects\pwm.o: .\System\all header.h
 .\objects\pwm.o: .\Start\stm32f10x.h
 .\objects\pwm.o: .\Start\core_cm3.h
 .\objects\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -28,3 +29,10 @@
 .\objects\pwm.o: .\Library\stm32f10x_usart.h
 .\objects\pwm.o: .\Library\stm32f10x_wwdg.h
 .\objects\pwm.o: .\Library\misc.h
+.\objects\pwm.o: .\System\Delay.h
+.\objects\pwm.o: .\Hardware\Motor.h
+.\objects\pwm.o: .\Hardware\Key.h
+.\objects\pwm.o: .\Hardware\PWM.h
+.\objects\pwm.o: .\Hardware\car.h
+.\objects\pwm.o: .\Hardware\sensor.h
+.\objects\pwm.o: .\System\Timer.h

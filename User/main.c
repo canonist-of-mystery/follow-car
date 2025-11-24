@@ -1,17 +1,20 @@
 #include "all header.h"
  
-uint8_t KeyNum;
-int8_t Speed;
+#define KEY_PRESSED 1
+#define KEY_UNPRESSED 0
+
 uint8_t ifstart=0; 
 uint8_t mode;
+uint8_t straight;
+uint8_t stop;
 
 int main(void)
 {
-	all init();
+	all_init();
 
 	while(1)
 	{
-		if(Key_Check(KEY_1,KEY_SINGLE))
+		if (Key_GetState() == KEY_PRESSED)
 		{
 			if(ifstart==0)//是否发车判断为0时
 			{
