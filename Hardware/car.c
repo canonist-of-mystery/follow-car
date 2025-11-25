@@ -9,7 +9,7 @@ void car_go_straight(void)//小车直行
 
     // 左后轮正转
     GPIO_SetBits(GPIOB, GPIO_Pin_5);       // 设置 PB5 为高电平（正向）
-    GPIO_ResetBits(GPIOB, GPIO_Pin_6);     // 将 PB6 清零（反向引脚置低）
+    GPIO_ResetBits(GPIOB, GPIO_Pin_12);     // 将 PB12 清零（反向引脚置低）
     PWM_SetCompare2(80);           // 将速度幅值作为 PWM 占空比（通道 4）
 
     // 右前轮正转
@@ -57,7 +57,7 @@ void car_turn_right(void)//小车右转
 
     // 左后轮正转
     GPIO_SetBits(GPIOB, GPIO_Pin_5);       // 设置 PB5 为高电平（正向）
-    GPIO_ResetBits(GPIOB, GPIO_Pin_6);     // 将 PB6 清零（反向引脚置低）
+    GPIO_ResetBits(GPIOB, GPIO_Pin_12);     // 将 PB6 清零（反向引脚置低）
     PWM_SetCompare2(80);          // 设置适当的速度幅值作为 PWM 占空比（通道 2）
 }
 
@@ -69,7 +69,7 @@ void car_left_vertical(void)//小车左直角
     PWM_SetCompare1(80);          // 设置适当的速度幅值作为 PWM 占空比（通道 1）
 
     // 左后轮反转
-    GPIO_SetBits(GPIOB, GPIO_Pin_6);       // 设置 PB6 为高电平（反向）
+    GPIO_SetBits(GPIOB, GPIO_Pin_12);       // 设置 PB6 为高电平（反向）
     GPIO_ResetBits(GPIOB, GPIO_Pin_5);     // 将 PB5 清零（正向引脚置低）
     PWM_SetCompare2(80);          // 设置适当的速度幅值作为 PWM 占空比（通道 2）
 
@@ -103,7 +103,7 @@ void car_right_vertical(void)//小车右直角
 
     // 左后轮正转
     GPIO_SetBits(GPIOB, GPIO_Pin_5);       // 设置 PB5 为高电平（正向）
-    GPIO_ResetBits(GPIOB, GPIO_Pin_6);     // 将 PB6 清零（反向引脚置低）
+    GPIO_ResetBits(GPIOB, GPIO_Pin_12);     // 将 PB6 清零（反向引脚置低）
     PWM_SetCompare2(80);          // 设置适当的速度幅值作为 PWM 占空比（通道 2）
 }
 

@@ -9,6 +9,7 @@
 #include "car.h"
 #include "sensor.h"
 #include "Timer.h"
+#include "OLED.h"
 
 
 #endif
