@@ -53,17 +53,17 @@ ExponentialFilter right2_exp = {0.7, 0.5};
 // ==================== 优化后的PD控制参数 ====================
 
 // 自适应PD控制参数
-#define KP_FAST 8.0f    // 快速响应时的比例系数
-#define KP_SLOW 4.0f    // 稳定时的比例系数  
-#define KD_FAST 6.0f    // 快速响应时的微分系数
-#define KD_SLOW 3.0f    // 稳定时的微分系数
+#define KP_FAST 3.0f    // 降低快速响应时的比例系数
+#define KP_SLOW 1.5f    // 降低稳定时的比例系数  
+#define KD_FAST 2.0f    // 降低快速响应时的微分系数
+#define KD_SLOW 1.0f    // 降低稳定时的微分系数
 #define BASE_SPEED 60   // 提高基础速度
 
 // 传感器权重定义（从左到右：极左，左，右，极右）
-#define WEIGHT_LEFT1  -3
-#define WEIGHT_LEFT2  -2
-#define WEIGHT_RIGHT1  2
-#define WEIGHT_RIGHT2  3
+#define WEIGHT_LEFT1  -2   // 降低极左权重
+#define WEIGHT_LEFT2  -1   // 降低左权重
+#define WEIGHT_RIGHT1  1   // 降低右权重
+#define WEIGHT_RIGHT2  2   // 降低极右权重
 
 // PD控制相关变量
 static int16_t last_error = 0;  // 上一次误差
@@ -85,7 +85,7 @@ uint8_t kalman_filter(KalmanFilter* kf, uint8_t measurement) {
     
     // 返回二值化结果
     return (kf->x > 0.5f) ? 1 : 0;
-}
+}//
 
 // 指数加权移动平均滤波
 uint8_t exponential_filter(ExponentialFilter* ef, uint8_t new_value) {

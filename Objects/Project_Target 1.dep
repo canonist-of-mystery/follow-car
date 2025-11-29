@@ -813,8 +813,8 @@ I (System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
 F (.\System\Timer.c)(0x6928527C)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\timer.o --omf_browse .\objects\timer.crf --depend .\objects\timer.d)
@@ -851,8 +851,8 @@ I (System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
 F (.\System\Timer.h)(0x690EFB4E)()
@@ -920,8 +920,8 @@ I (.\System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (.\System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
 F (.\Hardware\Key.h)(0x6926C9B3)()
@@ -1051,8 +1051,8 @@ I (.\System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (.\System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
 F (.\Hardware\PWM.h)(0x692019F6)()
@@ -1090,12 +1090,12 @@ I (.\System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (.\System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
 F (.\Hardware\Motor.h)(0x6919AE6E)()
-F (.\Hardware\car.c)(0x692996AE)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\car.o --omf_browse .\objects\car.crf --depend .\objects\car.d)
+F (.\Hardware\car.c)(0x692AC000)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\car.o --omf_browse .\objects\car.crf --depend .\objects\car.d)
 I (.\System\all header.h)(0x69251CA6)
 I (.\Start\stm32f10x.h)(0x6902D1E1)
 I (.\Start\core_cm3.h)(0x6902D1E1)
@@ -1129,12 +1129,12 @@ I (.\System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (.\System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
-F (.\Hardware\car.h)(0x6929541B)()
-F (.\Hardware\Sensor.c)(0x69299535)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\sensor.o --omf_browse .\objects\sensor.crf --depend .\objects\sensor.d)
+F (.\Hardware\car.h)(0x692AB71D)()
+F (.\Hardware\Sensor.c)(0x692AB731)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\sensor.o --omf_browse .\objects\sensor.crf --depend .\objects\sensor.d)
 I (.\System\all header.h)(0x69251CA6)
 I (.\Start\stm32f10x.h)(0x6902D1E1)
 I (.\Start\core_cm3.h)(0x6902D1E1)
@@ -1168,12 +1168,12 @@ I (.\System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (.\System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
-F (.\Hardware\Sensor.h)(0x692804B3)()
-F (.\User\main.c)(0x69299469)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\Hardware\Sensor.h)(0x692AB73D)()
+F (.\User\main.c)(0x692AB6E4)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-IC:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\System\all header.h)(0x69251CA6)
 I (.\Start\stm32f10x.h)(0x6902D1E1)
 I (.\Start\core_cm3.h)(0x6902D1E1)
@@ -1207,8 +1207,8 @@ I (.\System\Delay.h)(0x6919AE6E)
 I (.\Hardware\Motor.h)(0x6919AE6E)
 I (.\Hardware\Key.h)(0x6926C9B3)
 I (.\Hardware\PWM.h)(0x692019F6)
-I (.\Hardware\car.h)(0x6929541B)
-I (.\Hardware\sensor.h)(0x692804B3)
+I (.\Hardware\car.h)(0x692AB71D)
+I (.\Hardware\sensor.h)(0x692AB73D)
 I (.\System\Timer.h)(0x690EFB4E)
 I (.\Hardware\OLED.h)(0x6919AE6E)
 F (.\User\stm32f10x_conf.h)(0x6902D1E1)()
