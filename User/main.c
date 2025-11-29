@@ -29,17 +29,12 @@ int main(void)
 	
 	while(1)
 	{
+		Key_ScanNonBlocking();  // 非阻塞按键扫描
 		KeyNum = Key_GetNum();
 		
 		if (KeyNum == 1)
 		{
-			//Delay_ms(20); // 去抖动延时
 			ifstart=1-ifstart;
-			// Delay_ms(20); // 去抖动延时
-			// if(Key_GetNum() == 1) // 再次确认按键状态
-			// {
-			// ifstart=1-ifstart;
-			// }
 		}
 		if(ifstart==0)//是否发车判断为0时
 			{
@@ -60,6 +55,7 @@ void TIM1_UP_IRQHandler(void)
 {
 	if(TIM_GetITStatus(TIM1,TIM_IT_Update)==SET)
 	{
+		Key_ScanNonBlocking();  // 非阻塞按键扫描
 		if(ifstart==1)
 		{
 			uint8_t new_mode = sensor_check(); // 先读取新模式

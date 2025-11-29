@@ -22,7 +22,7 @@ uint8_t last_right2=0;
 #define stop 8
 #define straight_fast 9  // 直行加速模式
 
-// ==================== 改进的滤波算法 ====================
+//改进的滤波算法 
 
 // 1. 卡尔曼滤波结构体（用于高精度滤波）
 typedef struct {
@@ -45,31 +45,31 @@ KalmanFilter left2_kalman = {0.1, 0.1, 0.5, 1.0, 0};
 KalmanFilter right1_kalman = {0.1, 0.1, 0.5, 1.0, 0};
 KalmanFilter right2_kalman = {0.1, 0.1, 0.5, 1.0, 0};
 
-ExponentialFilter left1_exp = {0.7, 0.5};  // 提高alpha到0.7，响应更快
-ExponentialFilter left2_exp = {0.7, 0.5};
-ExponentialFilter right1_exp = {0.7, 0.5};
-ExponentialFilter right2_exp = {0.7, 0.5};
+ExponentialFilter left1_exp = {0.5, 0.5};  // 提高alpha到0.7，响应更快
+ExponentialFilter left2_exp = {0.5, 0.5};
+ExponentialFilter right1_exp = {0.5, 0.5};
+ExponentialFilter right2_exp = {0.5, 0.5};
 
-// ==================== 优化后的PD控制参数 ====================
+//优化后的PD控制参数 
 
 // 自适应PD控制参数
-#define KP_FAST 3.0f    // 降低快速响应时的比例系数
-#define KP_SLOW 1.5f    // 降低稳定时的比例系数  
-#define KD_FAST 2.0f    // 降低快速响应时的微分系数
-#define KD_SLOW 1.0f    // 降低稳定时的微分系数
+#define KP_FAST 2.0f    // 降低比例系数，减少过度修正
+#define KP_SLOW 1.0f    // 降低稳定时的比例系数
+#define KD_FAST 1.5f    // 降低微分系数，减少振荡
+#define KD_SLOW 0.8f    // 降低稳定时的微分系数
 #define BASE_SPEED 60   // 提高基础速度
 
 // 传感器权重定义（从左到右：极左，左，右，极右）
-#define WEIGHT_LEFT1  -2   // 降低极左权重
-#define WEIGHT_LEFT2  -1   // 降低左权重
-#define WEIGHT_RIGHT1  1   // 降低右权重
-#define WEIGHT_RIGHT2  2   // 降低极右权重
+#define WEIGHT_LEFT1  -1.5   // 降低极左权重，减少敏感度
+#define WEIGHT_LEFT2  -0.8   // 降低左权重
+#define WEIGHT_RIGHT1  0.8   // 降低右权重
+#define WEIGHT_RIGHT2  1.5   // 降低极右权重
 
 // PD控制相关变量
 static int16_t last_error = 0;  // 上一次误差
 static uint8_t rapid_change_count = 0; // 快速变化计数器
 
-// ==================== 优化的滤波函数 ====================
+//  优化的滤波函数 
 
 // 卡尔曼滤波函数
 uint8_t kalman_filter(KalmanFilter* kf, uint8_t measurement) {
@@ -103,8 +103,6 @@ uint8_t hybrid_filter(uint8_t new_value, KalmanFilter* kf, ExponentialFilter* ef
     
     return final_result;
 }
-
-// ==================== 优化后的PD控制函数 ====================
 
 // 计算传感器误差函数
 int16_t calculate_error(void)
@@ -147,7 +145,7 @@ int16_t calculate_adaptive_pd_control(void)
     
     // 带死区的PD控制（减少微小振荡）
     int16_t turn = 0;
-    if (abs(current_error) > 1) {  // 误差大于1时才响应
+    if (abs(current_error) > 2) {  // 误差大于1时才响应
         turn = (int16_t)(kp * current_error + kd * error_diff);
     }
     
@@ -204,7 +202,7 @@ void car_pd_drive_fast(void)
     PWM_SetCompare4(right_speed);
 }
 
-// 原有的PD控制函数（保持兼容性）
+// 原有的PD控制函数
 int16_t calculate_pd_control(void)
 {
     return calculate_adaptive_pd_control(); // 默认使用自适应版本
@@ -233,8 +231,6 @@ void sensor_init(void)//红外模块用到的四个引脚的初始化
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 
-// ==================== 保持您原有的 sensor_check 逻辑 ====================
-
 uint8_t sensor_check(void)//设置红外模块的状态（带改进的滤波）
 {
     uint8_t mode;
@@ -251,8 +247,6 @@ uint8_t sensor_check(void)//设置红外模块的状态（带改进的滤波）
     left2 = hybrid_filter(raw_left2, &left2_kalman, &left2_exp);
     right1 = hybrid_filter(raw_right1, &right1_kalman, &right1_exp);
     right2 = hybrid_filter(raw_right2, &right2_kalman, &right2_exp);
-
-    // ============ 以下是您原有的逻辑，完全保持不变 ============
     
     // 首先检查是否全黑(0000)
     if(left1 == 0 && left2 == 0 && right1 == 0 && right2 == 0)
@@ -304,8 +298,6 @@ uint8_t sensor_check(void)//设置红外模块的状态（带改进的滤波）
     }
     return mode;
 }
-
-// ==================== 保持您原有的 sensor_control 逻辑 ====================
 
 void sensor_control(uint8_t mode)//根据红外模块的状态控制小车运动
 {
