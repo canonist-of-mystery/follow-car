@@ -36,3 +36,4 @@
 .\objects\pwm.o: .\Hardware\car.h
 .\objects\pwm.o: .\Hardware\sensor.h
 .\objects\pwm.o: .\System\Timer.h
+.\objects\pwm.o: .\Hardware\OLED.h

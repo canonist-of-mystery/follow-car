@@ -1,11 +1,12 @@
 #include "all header.h"
 
-#define KEY_PRESSED 1
-#define KEY_UNPRESSED 0
+#define KEY_PRESSED 0
+#define KEY_UNPRESSED 1
 
-#define KEY_DEBOUNCE_TIME 20
+// #define KEY_DEBOUNCE_TIME 20
 
-volatile uint8_t g_key_pressed = 0;  // 按键按下标志
+// volatile uint8_t g_key_pressed = 0;  // 按键按下标志
+//uint8_t Key_Num;
 
 // #define KEY_HOLD         0x01//按住不放
 // #define KEY_DOWN         0x02//按下时刻
@@ -33,20 +34,75 @@ void Key_Init(void)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;//正常情况下为1电平
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
-uint8_t Key_GetState(void)
+// uint8_t Key_GetNum(void)
+// {
+//     // uint8_t Temp;
+//     // if (Key_Num)
+//     // {
+//     //     Temp=Key_Num;
+//     //     Key_Num=0;
+//     //     return Temp;
+//     // }
+//     // return 0;
+// 	static uint8_t Key_Num=0;
+// 	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == 0)
+// 	{
+// 		Delay_ms(20);
+// 		while(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == 0);
+// 		Delay_ms(20);
+// 		Key_Num=1-Key_Num;
+// 	}
+// 	return Key_Num;
+// }
+	uint8_t Key_GetNum(void)
 {
-	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) == 0)
-	{
-		return KEY_PRESSED;
-	}else
-	return KEY_UNPRESSED;
+    static uint8_t last_state = 1;  // 上次按键状态
+    uint8_t current_state = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4);
+    uint8_t key_event = 0;
+    
+    if (last_state == 1 && current_state == 0)  // 检测下降沿（按下）
+    {
+        Delay_ms(20);  // 消抖
+        if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == 0)  // 确认按下
+        {
+            key_event = 1;  // 返回按键事件
+        }
+    }
+    
+    last_state = current_state;
+    return key_event;
 }
+
+
+
+
+// uint8_t Key_GetState(void)
+// {
+// 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == 0)
+// 	{
+// 		return 0;
+// 	}
+// 	return 1;
+// }
+
+						// uint8_t Key_GetState(void)
+						// {
+						// 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4) == 0)
+						// 	{
+						// 		return 1;
+						// 	}
+						// 	// if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11) == 0)
+						// 	// {
+						// 	// 	return 2;
+						// 	// }
+						// 	return 0;
+						// }
 
 // uint8_t Key_Check(uint8_t Flag)
 // {
@@ -61,31 +117,58 @@ uint8_t Key_GetState(void)
 // 	return 0;
 // }
 
+
+					// void Key_Tick(void)
+					// {
+					// 	static uint8_t Count;
+					// 	static uint8_t CurrState, PrevState;
+						
+					// 	Count ++;
+					// 	if (Count >= 20)
+					// 	{
+					// 		Count = 0;
+							
+					// 		PrevState = CurrState;
+					// 		CurrState = Key_GetState();
+							
+					// 		if (CurrState == 0 && PrevState != 0)
+					// 		{
+					// 			Key_Num = PrevState;
+					// 		}
+					// 	}
+					// }
+
 // void Key_Tick(void)
 // {
-// 	static uint8_t Count, i;
-// 	static uint8_t CurrState[KEY_COUNT], PrevState[KEY_COUNT];
-// 	static uint8_t S[KEY_COUNT];
-// 	static uint16_t Time[KEY_COUNT];
+// 	static uint8_t Count;
+// 	static uint8_t CurrState=1, PrevState=1;
+// // 	static uint8_t S[KEY_COUNT];
+// // 	static uint16_t Time[KEY_COUNT];
 	
-// 	for (i = 0; i < KEY_COUNT; i ++)
-// 	{
-// 		if (Time[i] > 0)
-// 		{
-// 			Time[i] --;
-// 		}
-// 	}
+// // 	for (i = 0; i < KEY_COUNT; i ++)
+// // 	{
+// // 		if (Time[i] > 0)
+// // 		{
+// // 			Time[i] --;
+// // 		}
+// // 	}
 	
 // 	Count ++;
-// 	if (Count >= 20)
+// 	if (Count >= 5)
 // 	{
 // 		Count = 0;
 		
-// 		for (i = 0; i < KEY_COUNT; i ++)
-// 		{
-// 			PrevState[i] = CurrState[i];
-// 			CurrState[i] = Key_GetState(i);
-			
+// // 		for (i = 0; i < KEY_COUNT; i ++)
+// // 		{
+//         PrevState = CurrState;
+//         CurrState = Key_GetState();
+        
+//         if(CurrState ==0&& PrevState ==1)
+//         {
+//             Key_Num=PrevState;
+//         }
+//     }
+// }
 // 			if (CurrState[i] == KEY_PRESSED)
 // 			{
 // 				Key_Flag[i] |= KEY_HOLD;
@@ -200,29 +283,30 @@ uint8_t Key_GetState(void)
 //     }
 // }
 
-void Key_Tick(void)
-{
-    static uint8_t last_state = 1;
-    static uint8_t count = 0;
-    static uint8_t was_pressed = 0;  // 记录之前是否有效按下
-    uint8_t current_state = Key_GetState();
+// void Key_Tick(void)
+// {
+//     static uint8_t last_state = 1;
+//     static uint8_t count = 0;
+//     static uint8_t was_pressed = 0;  // 记录之前是否有效按下
+//     uint8_t current_state = Key_GetState();
 
-    if (current_state != last_state) {
-        last_state = current_state;
-        count = 0;
-    } else {
-        count++;
-    }
+//     if (current_state != last_state) {
+//         last_state = current_state;
+//         count = 0;
+//     } else {
+//         count++;
+//     }
 
-    // 按下消抖确认
-    if (current_state == 0 && count == KEY_DEBOUNCE_TIME) {
-        was_pressed = 1;  // 标记有效按下
-    }
+//     // 按下消抖确认
+//     if (current_state == 0 && count == KEY_DEBOUNCE_TIME) {
+//         was_pressed = 1;  // 标记有效按下
+//     }
     
-    // 释放检测
-    if (current_state == 1 && was_pressed && count > KEY_DEBOUNCE_TIME) {
-        g_key_pressed = 1;
-        was_pressed = 0;  // 重置标记
-    }
-}
+
+//     // 释放检测
+//     if (current_state == 1 && was_pressed && count > KEY_DEBOUNCE_TIME) {
+//         g_key_pressed = 1;
+//         was_pressed = 0;  // 重置标记
+//     }
+// }
 

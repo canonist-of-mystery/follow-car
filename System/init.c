@@ -6,5 +6,7 @@ void all_init()
 	Key_Init();
     PWM_Init();
     sensor_init();
+    OLED_Init();
+    Timer_Init();
 }
 	

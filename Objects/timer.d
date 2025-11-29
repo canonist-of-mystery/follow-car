@@ -36,3 +36,4 @@
 .\objects\timer.o: .\Hardware\car.h
 .\objects\timer.o: .\Hardware\sensor.h
 .\objects\timer.o: System\Timer.h
+.\objects\timer.o: .\Hardware\OLED.h
