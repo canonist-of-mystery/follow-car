@@ -33,7 +33,13 @@ int main(void)
 		
 		if (KeyNum == 1)
 		{
+			//Delay_ms(20); // 去抖动延时
 			ifstart=1-ifstart;
+			// Delay_ms(20); // 去抖动延时
+			// if(Key_GetNum() == 1) // 再次确认按键状态
+			// {
+			// ifstart=1-ifstart;
+			// }
 		}
 		if(ifstart==0)//是否发车判断为0时
 			{
@@ -46,14 +52,6 @@ int main(void)
 				OLED_ShowString(2, 1, "     ");
 				OLED_ShowString(1, 1, "Start");
 			}
-			//  if(mode=leftvertical)
-			// {
-			// car_left_vertical();
-			// }
-			//  if(mode=rightvertical)
-			// {
-			// car_right_vertical();
-			// }
 		Delay_ms(50);
 	}
 }
@@ -64,29 +62,29 @@ void TIM1_UP_IRQHandler(void)
 	{
 		if(ifstart==1)
 		{
-			// uint8_t new_mode = sensor_check(); // 先读取新模式
+			uint8_t new_mode = sensor_check(); // 先读取新模式
 			
-			// // 连续直行检测逻辑
-			// if(new_mode == straight)
-			// {
-			// 	consecutive_straight_count++;
-			// 	// 如果连续2次检测到直行，则切换到加速模式
-			// 	if(consecutive_straight_count >= 50)
-			// 	{
-			// 		mode = straight_fast;
-			// 	}
-			// 	else
-			// 	{
-			// 		mode = straight;
-			// 	}
-			// }
-			// else
-			// {
-			// 	// 如果不是直行模式，重置计数器
-			// 	consecutive_straight_count = 0;
-			// 	mode = new_mode;
-			// }
-			mode= sensor_check();
+			// 连续直行检测逻辑
+			if(new_mode == straight)
+			{
+				consecutive_straight_count++;
+				// 如果连续2次检测到直行，则切换到加速模式
+				if(consecutive_straight_count >= 20)
+				{
+					mode = straight_fast;
+				}
+				else
+				{
+					mode = straight;
+				}
+			}
+			else
+			{
+				// 如果不是直行模式，重置计数器
+				consecutive_straight_count = 0;
+				mode = new_mode;
+			}
+			// mode= sensor_check();
 			sensor_control(mode);
 			
 		}

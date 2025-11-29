@@ -1,7 +1,7 @@
 #include "all header.h"
 
 // #define KP 1.5f   // 比例系数，根据实际调试调整
-#define BASE_SPEED 50  // 基础速度
+//#define BASE_SPEED 50  // 基础速度
 
 // 在car.c中修改car_pid_control函数为car_pd_control
 // void car_pd_control(void)
@@ -100,15 +100,15 @@ void car_turn_right(void)//小车右转
 
 void car_left_vertical(void)//小车左直角
 {
-    // 左前轮反转 - 增加制动力
-    GPIO_ResetBits(GPIOB, GPIO_Pin_4);     // 反转方向
-    GPIO_SetBits(GPIOB, GPIO_Pin_3);
-    PWM_SetCompare1(5);          // 增加反转力度
+    // 左前轮正转 - 增加制动力
+    GPIO_SetBits(GPIOB, GPIO_Pin_3);       // 正转方向
+    GPIO_ResetBits(GPIOB, GPIO_Pin_4);
+    PWM_SetCompare1(5);          // 增加正转力度
 
-    // 左后轮反转 - 增加制动力
-    GPIO_ResetBits(GPIOB, GPIO_Pin_13);
+    // 左后轮正转 - 增加制动力
     GPIO_SetBits(GPIOB, GPIO_Pin_5);
-    PWM_SetCompare2(50);          // 增加反转力度
+    GPIO_ResetBits(GPIOB, GPIO_Pin_13);
+    PWM_SetCompare2(5);          // 增加正转力度
 
     // 右前轮正转 - 提高速度
     GPIO_SetBits(GPIOB, GPIO_Pin_11);
@@ -126,12 +126,12 @@ void car_right_vertical(void)//小车右直角
     // 右前轮反转 - 增加制动力
     GPIO_ResetBits(GPIOB, GPIO_Pin_10);
     GPIO_SetBits(GPIOB, GPIO_Pin_11);
-    PWM_SetCompare3(5);          // 增加反转力度
+    PWM_SetCompare3(5);          // 增加正转力度
 
     // 右后轮反转 - 增加制动力
     GPIO_ResetBits(GPIOA, GPIO_Pin_9);
     GPIO_SetBits(GPIOA, GPIO_Pin_10);
-    PWM_SetCompare4(50);          // 增加反转力度
+    PWM_SetCompare4(5);          // 增加正转力度
 
     // 左前轮正转 - 提高速度
     GPIO_SetBits(GPIOB, GPIO_Pin_3);
